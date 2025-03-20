@@ -11,8 +11,8 @@ grepExit () {
 	exit 1;
 }
 
-EXCLUDE=(${INPUT_EXCLUDES/,/ })
-EXCLUDE_DIR=(${INPUT_EXCLUDE_DIR/,/ })
+EXCLUDE=(${INPUT_EXCLUDES//,/ })
+EXCLUDE_DIR=(${INPUT_EXCLUDE_DIR//,/ })
 
 CONFLICTS="$(grep -lr -r --exclude-dir=.git "${EXCLUDE_DIR[@]/#/--exclude-dir=}" "${EXCLUDE[@]/#/--exclude=}" -E -- '^<<<<<<<|^>>>>>>>' .)" || grepExit $?
 
